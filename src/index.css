@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+html,
+body {
+  @apply bg-foss-green-dim;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+@theme {
+  --color-foss-green: #00ff7f;
+  --color-foss-green-dim: #00cc66;
+}
