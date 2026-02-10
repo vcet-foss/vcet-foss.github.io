@@ -136,7 +136,11 @@ const Community: React.FC = () => {
               <p className="text-gray-400 text-sm mb-4">
                 Pitch your idea to the community and find teammates.
               </p>
-              <Button className="w-full">Submit Project Idea</Button>
+              <a
+                href="https://github.com/vcet-foss/awesome-foss"
+                target="_blank"
+              >
+                <Button className="w-full">Submit Project Idea</Button></a>
             </div>
           </div>
         </div>

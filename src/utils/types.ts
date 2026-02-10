@@ -1,12 +1,19 @@
-export interface Project {
-  id: string;
+export interface Maintainer {
   name: string;
+  contact: string;
+}
+
+export interface Project {
+  slug: string;
+  name: string;
+  tagline: string;
   description: string;
-  tech: string[];
-  status: "active" | "looking-for-contributors" | "idea" | "completed";
-  githubUrl?: string;
-  demoUrl?: string;
-  stars?: number;
+  status: "active" | "dormant" | "idea";
+  difficulty: "beginner" | "intermediate" | "advanced";
+  tech_stack: string[];
+  github_repo: string;
+  maintainers: Maintainer[];
+  looking_for_contributors: boolean;
 }
 
 export interface NavItem {
