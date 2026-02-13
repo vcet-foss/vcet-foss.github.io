@@ -3,6 +3,8 @@ export interface Maintainer {
   contact: string;
 }
 
+export type Domain = "Web" | "AI/ML" | "GenAI" | "Blockchain" | "IoT/Embedded";
+
 export interface Project {
   slug: string;
   name: string;
@@ -14,6 +16,7 @@ export interface Project {
   github_repo: string;
   maintainers: Maintainer[];
   looking_for_contributors: boolean;
+  domain?: Domain[];
 }
 
 export interface NavItem {

@@ -1,23 +1,20 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Button from "../components/Button";
-import type { Tab } from "../utils/types";
 import { FEATURES } from "../utils/constants";
+import { useNavigate, NavLink } from "react-router-dom";
 
-interface HomeProps {
-  changeTab: (tab: Tab) => void;
-}
-
-const Home: React.FC<HomeProps> = ({ changeTab }) => {
+const Home: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex flex-col justify-center pt-20 overflow-hidden">
         {/* Abstract Background Grid */}
-        <div className="absolute top-0 inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+        <div className="absolute top-0 inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8 jersey-25-regular">
               BUILDING THE <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-500">
                 FUTURE OF
@@ -31,22 +28,25 @@ const Home: React.FC<HomeProps> = ({ changeTab }) => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => changeTab("projects")}
-                className="group"
-              >
-                Explore Projects{" "}
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => changeTab("community")}
-              >
-                Join Community
-              </Button>
+
+              <NavLink to="/projects">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="group"
+                >
+                  Explore Projects{" "}
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </NavLink>
+              <NavLink to="/community">
+                <Button
+                  variant="outline"
+                  size="lg"
+                >
+                  Join Community
+                </Button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ const Home: React.FC<HomeProps> = ({ changeTab }) => {
           </p>
           <div className="flex justify-center gap-4">
             <button
-              onClick={() => changeTab("community")}
+              onClick={() => navigate("/community")}
               className="bg-black text-white px-8 py-4 font-mono font-bold hover:bg-gray-900 transition-colors active:scale-95"
             >
               Start Contributing_

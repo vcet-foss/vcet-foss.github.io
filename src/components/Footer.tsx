@@ -1,5 +1,6 @@
 import React from "react";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
@@ -15,25 +16,25 @@ const Footer: React.FC = () => {
               Solving real-world problems through open source collaboration.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="https://github.com/vcet-foss"
+              <NavLink
+                to="https://github.com/vcet-foss"
                 target="_blank"
                 className="text-gray-400 hover:text-foss-green transition-colors"
               >
                 <Github className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
+              </NavLink>
+              {/* <NavLink
+                to="#"
                 className="text-gray-400 hover:text-foss-green transition-colors"
               >
                 <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
+              </NavLink>
+              <NavLink
+                to="#"
                 className="text-gray-400 hover:text-foss-green transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
+              </NavLink> */}
             </div>
           </div>
 
@@ -50,19 +51,28 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <NavLink
+                  to="/code-of-conduct"
+                  className="hover:text-foss-green transition-colors"
+                >
                   Code of Conduct
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <NavLink
+                  to="/events"
+                  className="hover:text-foss-green transition-colors"
+                >
                   Events
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <NavLink
+                  to="/hackathons"
+                  className="hover:text-foss-green transition-colors"
+                >
                   Hackathons
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -71,27 +81,32 @@ const Footer: React.FC = () => {
             <h3 className="font-mono text-white mb-4">Resources</h3>
             <ul className="space-y-3 text-sm text-gray-400 font-sans">
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <NavLink to="/documentation" className="hover:text-foss-green transition-colors">
                   Documentation
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <a
+                  href="https://github.com/vcet-foss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foss-green transition-colors"
+                >
                   GitHub Organization
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foss-green transition-colors">
+                <NavLink to="/project-guidelines" className="hover:text-foss-green transition-colors">
                   Project Guidelines
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="mailto:vcetopensource@gmail.com"
+                <NavLink
+                  to="mailto:vcetopensource@gmail.com"
                   className="hover:text-foss-green transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-3 h-3" /> Contact Us
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

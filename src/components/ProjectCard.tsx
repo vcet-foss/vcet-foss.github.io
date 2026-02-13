@@ -6,6 +6,14 @@ interface ProjectCardProps {
   project: Project;
 }
 
+const domainColors: Record<string, string> = {
+  Web: "text-sky-400 bg-sky-400/10 border-sky-400/30",
+  "AI/ML": "text-purple-400 bg-purple-400/10 border-purple-400/30",
+  GenAI: "text-pink-400 bg-pink-400/10 border-pink-400/30",
+  Blockchain: "text-orange-400 bg-orange-400/10 border-orange-400/30",
+  "IoT/Embedded": "text-teal-400 bg-teal-400/10 border-teal-400/30",
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const statusColors = {
     active: "text-foss-green border-foss-green",
@@ -32,7 +40,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       {/* Status + Difficulty badges */}
-      <div className="flex items-center gap-2 mb-4 flex-wrap">
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
         <span
           className={`inline-block px-2 py-0.5 text-xs font-mono border ${statusColors[project.status]}`}
         >
@@ -50,6 +58,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </span>
         )}
       </div>
+
+      {/* Domain badges */}
+      {project.domain && project.domain.length > 0 && (
+        <div className="flex items-center gap-1.5 mb-4 flex-wrap">
+          {project.domain.map((d) => (
+            <span
+              key={d}
+              className={`inline-block px-2 py-0.5 text-[10px] font-mono border rounded-sm ${domainColors[d] ?? "text-gray-400 bg-white/5 border-white/10"
+                }`}
+            >
+              {d}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Title */}
       <h3 className="text-xl font-display font-bold text-white mb-1 group-hover:text-foss-green transition-colors">
@@ -84,7 +107,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {project.maintainers.map((m) => m.name).join(", ")}
         </div>
 
-        {/* Footer: GitHub link */}
+        {/* Footer: Slug + GitHub link */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-800">
           <div className="flex items-center gap-1 text-gray-500 text-xs font-mono">
             <ChevronRight className="w-3 h-3" />

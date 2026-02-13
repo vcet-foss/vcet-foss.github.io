@@ -47,3 +47,20 @@ export const TECH_ICONS: Record<string, typeof Globe> = {
   Prisma: Database,
   Vite: Terminal,
 };
+
+export const DOMAIN_OPTIONS = [
+  "Web",
+  "AI/ML",
+  "GenAI",
+  "Blockchain",
+  "IoT/Embedded",
+] as const;
+
+export const SORT_OPTIONS = [
+  { value: "name-asc", label: "Name A → Z" },
+  { value: "name-desc", label: "Name Z → A" },
+  { value: "status", label: "By Status" },
+  { value: "domain", label: "By Domain" },
+] as const;
+
+export type SortOption = (typeof SORT_OPTIONS)[number]["value"];
