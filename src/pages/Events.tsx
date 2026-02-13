@@ -1,55 +1,46 @@
-import React, { useState } from "react";
-import { Calendar, MapPin, Users, ExternalLink, Filter } from "lucide-react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
-type EventType = "Workshop" | "Meetup" | "Conference" | "Webinar" | "All";
+// type EventType = "Workshop" | "Meetup" | "Conference" | "Webinar" | "All";
 
-interface Event {
-    id: string;
-    title: string;
-    date: string;
-    type: EventType;
-    location: string;
-    description: string;
-    registrationLink?: string;
-    status: "upcoming" | "past";
-    attendees?: number;
-}
+// interface Event {
+//     id: string;
+//     title: string;
+//     date: string;
+//     type: EventType;
+//     location: string;
+//     description: string;
+//     registrationLink?: string;
+//     status: "upcoming" | "past";
+//     attendees?: number;
+// }
 
 // Sample data - replace with actual data source
-const EVENTS: Event[] = [
-    {
-        id: "1",
-        title: "Open Source Workshop: Git & GitHub",
-        date: "2026-03-15",
-        type: "Workshop",
-        location: "VCET Campus, Lab 301",
-        description: "Learn the fundamentals of Git version control and GitHub collaboration. Hands-on session covering branching, pull requests, and open source contribution workflows.",
-        registrationLink: "#",
-        status: "upcoming",
-        attendees: 45,
-    },
-    {
-        id: "2",
-        title: "FOSS Community Meetup",
-        date: "2026-02-20",
-        type: "Meetup",
-        location: "VCET Auditorium",
-        description: "Monthly community gathering to discuss ongoing projects, share experiences, and plan future initiatives. Open to all students and faculty.",
-        status: "past",
-        attendees: 32,
-    },
-];
+// const EVENTS: Event[] = [
+//     {
+//         id: "1",
+//         title: "Open Source Workshop: Git & GitHub",
+//         date: "2026-03-15",
+//         type: "Workshop",
+//         location: "VCET Campus, Lab 301",
+//         description: "Learn the fundamentals of Git version control and GitHub collaboration. Hands-on session covering branching, pull requests, and open source contribution workflows.",
+//         registrationLink: "#",
+//         status: "upcoming",
+//         attendees: 45,
+//     },
+//     {
+//         id: "2",
+//         title: "FOSS Community Meetup",
+//         date: "2026-02-20",
+//         type: "Meetup",
+//         location: "VCET Auditorium",
+//         description: "Monthly community gathering to discuss ongoing projects, share experiences, and plan future initiatives. Open to all students and faculty.",
+//         status: "past",
+//         attendees: 32,
+//     },
+// ];
 
 const Events: React.FC = () => {
-    const [filterType, setFilterType] = useState<EventType>("All");
-
-    const filteredEvents = EVENTS.filter(
-        (event) => filterType === "All" || event.type === filterType
-    );
-
-    const upcomingEvents = filteredEvents.filter((e) => e.status === "upcoming");
-    const pastEvents = filteredEvents.filter((e) => e.status === "past");
 
     return (
         <div className="pt-32 pb-24 min-h-screen bg-black">
@@ -152,75 +143,75 @@ const Events: React.FC = () => {
     );
 };
 
-// Event Card Component
-const EventCard: React.FC<{ event: Event; compact?: boolean }> = ({
-    event,
-    compact = false,
-}) => {
-    const isPast = event.status === "past";
-    const eventDate = new Date(event.date);
-    const formattedDate = eventDate.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-    });
-
-    return (
-        <div
-            className={`border border-white/10 bg-white/[0.02] p-6 hover:border-foss-green/30 transition-all ${isPast ? "opacity-70" : ""
-                }`}
-        >
-            {/* Type badge */}
-            <div className="flex items-center justify-between mb-4">
-                <span className="px-2 py-1 text-xs font-mono bg-foss-green/10 text-foss-green border border-foss-green/20">
-                    {event.type}
-                </span>
-                {isPast && (
-                    <span className="text-xs text-gray-600 font-mono">Past Event</span>
-                )}
-            </div>
-
-            {/* Title */}
-            <h3 className="text-xl font-display font-bold text-white mb-3">
-                {event.title}
-            </h3>
-
-            {/* Date & Location */}
-            <div className="space-y-2 mb-4 text-sm text-gray-400 font-mono">
-                <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-foss-green" />
-                    {formattedDate}
-                </div>
-                <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-foss-green" />
-                    {event.location}
-                </div>
-                {event.attendees && (
-                    <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-foss-green" />
-                        {event.attendees} attendees
-                    </div>
-                )}
-            </div>
-
-            {/* Description */}
-            {!compact && (
-                <p className="text-gray-400 font-sans text-sm mb-4 leading-relaxed">
-                    {event.description}
-                </p>
-            )}
-
-            {/* Registration Link */}
-            {event.registrationLink && !isPast && (
-                <a
-                    href={event.registrationLink}
-                    className="inline-flex items-center gap-2 text-foss-green hover:text-foss-green/80 font-mono text-sm transition-colors"
-                >
-                    Register Now <ExternalLink className="w-3 h-3" />
-                </a>
-            )}
-        </div>
-    );
-};
+// Event Card Component - Commented out as event display is not yet implemented
+// const EventCard: React.FC<{ event: Event; compact?: boolean }> = ({
+//     event,
+//     compact = false,
+// }) => {
+//     const isPast = event.status === "past";
+//     const eventDate = new Date(event.date);
+//     const formattedDate = eventDate.toLocaleDateString("en-US", {
+//         month: "short",
+//         day: "numeric",
+//         year: "numeric",
+//     });
+//
+//     return (
+//         <div
+//             className={`border border-white/10 bg-white/[0.02] p-6 hover:border-foss-green/30 transition-all ${isPast ? "opacity-70" : ""
+//                 }`}
+//         >
+//             {/* Type badge */}
+//             <div className="flex items-center justify-between mb-4">
+//                 <span className="px-2 py-1 text-xs font-mono bg-foss-green/10 text-foss-green border border-foss-green/20">
+//                     {event.type}
+//                 </span>
+//                 {isPast && (
+//                     <span className="text-xs text-gray-600 font-mono">Past Event</span>
+//                 )}
+//             </div>
+//
+//             {/* Title */}
+//             <h3 className="text-xl font-display font-bold text-white mb-3">
+//                 {event.title}
+//             </h3>
+//
+//             {/* Date & Location */}
+//             <div className="space-y-2 mb-4 text-sm text-gray-400 font-mono">
+//                 <div className="flex items-center gap-2">
+//                     <Calendar className="w-4 h-4 text-foss-green" />
+//                     {formattedDate}
+//                 </div>
+//                 <div className="flex items-center gap-2">
+//                     <MapPin className="w-4 h-4 text-foss-green" />
+//                     {event.location}
+//                 </div>
+//                 {event.attendees && (
+//                     <div className="flex items-center gap-2">
+//                         <Users className="w-4 h-4 text-foss-green" />
+//                         {event.attendees} attendees
+//                     </div>
+//                 )}
+//             </div>
+//
+//             {/* Description */}
+//             {!compact && (
+//                 <p className="text-gray-400 font-sans text-sm mb-4 leading-relaxed">
+//                     {event.description}
+//                 </p>
+//             )}
+//
+//             {/* Registration Link */}
+//             {event.registrationLink && !isPast && (
+//                 <a
+//                     href={event.registrationLink}
+//                     className="inline-flex items-center gap-2 text-foss-green hover:text-foss-green/80 font-mono text-sm transition-colors"
+//                 >
+//                     Register Now <ExternalLink className="w-3 h-3" />
+//                 </a>
+//             )}
+//         </div>
+//     );
+// };
 
 export default Events;

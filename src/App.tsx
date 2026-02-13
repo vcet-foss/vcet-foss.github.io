@@ -10,6 +10,7 @@ import Events from "./pages/Events";
 import Hackathons from "./pages/Hackathons";
 import Documentation from "./pages/Documentation";
 import ProjectGuidelines from "./pages/ProjectGuidelines";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/hackathons" element={<Hackathons />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/project-guidelines" element={<ProjectGuidelines />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 

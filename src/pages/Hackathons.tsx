@@ -1,5 +1,5 @@
 import React from "react";
-import { Trophy, Calendar, Code2, ExternalLink, Github } from "lucide-react";
+import { Code2 } from "lucide-react";
 
 interface Hackathon {
     id: string;
@@ -51,9 +51,6 @@ const HACKATHONS: Hackathon[] = [
 ];
 
 const Hackathons: React.FC = () => {
-    const activeHackathons = HACKATHONS.filter((h) => h.status === "active");
-    const upcomingHackathons = HACKATHONS.filter((h) => h.status === "upcoming");
-    const pastHackathons = HACKATHONS.filter((h) => h.status === "past");
 
     return (
         <div className="pt-32 pb-24 min-h-screen bg-black">
@@ -160,140 +157,140 @@ const Hackathons: React.FC = () => {
     );
 };
 
-// Hackathon Card (Active/Upcoming)
-const HackathonCard: React.FC<{ hackathon: Hackathon }> = ({ hackathon }) => {
-    const hackathonDate = new Date(hackathon.date);
-    const formattedDate = hackathonDate.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-    });
+// Hackathon Card (Active/Upcoming) - Commented out as not currently used
+// const HackathonCard: React.FC<{ hackathon: Hackathon }> = ({ hackathon }) => {
+//     const hackathonDate = new Date(hackathon.date);
+//     const formattedDate = hackathonDate.toLocaleDateString("en-US", {
+//         month: "short",
+//         day: "numeric",
+//         year: "numeric",
+//     });
+//
+//     return (
+//         <div className="border border-white/10 bg-white/[0.02] p-8 hover:border-foss-green/50 transition-all relative overflow-hidden">
+//             {hackathon.status === "active" && (
+//                 <div className="absolute top-4 right-4">
+//                     <span className="px-3 py-1 bg-red-500 text-white text-xs font-mono font-bold animate-pulse">
+//                         LIVE
+//                     </span>
+//                 </div>
+//             )}
+//
+//             <h3 className="text-2xl font-display font-bold text-white mb-2">
+//                 {hackathon.name}
+//             </h3>
+//
+//             <div className="flex items-center gap-4 text-sm text-gray-400 font-mono mb-4">
+//                 <div className="flex items-center gap-2">
+//                     <Calendar className="w-4 h-4 text-foss-green" />
+//                     {formattedDate}
+//                 </div>
+//                 <div className="flex items-center gap-2">
+//                     <Code2 className="w-4 h-4 text-foss-green" />
+//                     {hackathon.theme}
+//                 </div>
+//             </div>
+//
+//             <p className="text-gray-400 font-sans text-sm mb-6 leading-relaxed">
+//                 {hackathon.description}
+//             </p>
+//
+//             {hackathon.registrationLink && (
+//                 <a
+//                     href={hackathon.registrationLink}
+//                     className="inline-flex items-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors"
+//                 >
+//                     {hackathon.status === "active" ? "Join Now" : "Register"}
+//                     <ExternalLink className="w-4 h-4" />
+//                 </a>
+//             )}
+//         </div>
+//     );
+// };
 
-    return (
-        <div className="border border-white/10 bg-white/[0.02] p-8 hover:border-foss-green/50 transition-all relative overflow-hidden">
-            {hackathon.status === "active" && (
-                <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-red-500 text-white text-xs font-mono font-bold animate-pulse">
-                        LIVE
-                    </span>
-                </div>
-            )}
-
-            <h3 className="text-2xl font-display font-bold text-white mb-2">
-                {hackathon.name}
-            </h3>
-
-            <div className="flex items-center gap-4 text-sm text-gray-400 font-mono mb-4">
-                <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-foss-green" />
-                    {formattedDate}
-                </div>
-                <div className="flex items-center gap-2">
-                    <Code2 className="w-4 h-4 text-foss-green" />
-                    {hackathon.theme}
-                </div>
-            </div>
-
-            <p className="text-gray-400 font-sans text-sm mb-6 leading-relaxed">
-                {hackathon.description}
-            </p>
-
-            {hackathon.registrationLink && (
-                <a
-                    href={hackathon.registrationLink}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors"
-                >
-                    {hackathon.status === "active" ? "Join Now" : "Register"}
-                    <ExternalLink className="w-4 h-4" />
-                </a>
-            )}
-        </div>
-    );
-};
-
-// Past Hackathon Card with Winner
-const PastHackathonCard: React.FC<{ hackathon: Hackathon }> = ({
-    hackathon,
-}) => {
-    const hackathonDate = new Date(hackathon.date);
-    const formattedDate = hackathonDate.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-    });
-
-    return (
-        <div className="border border-white/10 bg-white/[0.02] p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-                {/* Hackathon Info */}
-                <div>
-                    <h3 className="text-2xl font-display font-bold text-white mb-3">
-                        {hackathon.name}
-                    </h3>
-
-                    <div className="space-y-2 text-sm text-gray-400 font-mono mb-4">
-                        <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-foss-green" />
-                            {formattedDate}
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Code2 className="w-4 h-4 text-foss-green" />
-                            {hackathon.theme}
-                        </div>
-                    </div>
-
-                    <p className="text-gray-400 font-sans text-sm mb-4">
-                        {hackathon.description}
-                    </p>
-
-                    {hackathon.participants && (
-                        <div className="flex items-center gap-6 text-sm font-mono text-gray-500">
-                            <span>{hackathon.participants} participants</span>
-                            <span>{hackathon.projects} projects</span>
-                        </div>
-                    )}
-                </div>
-
-                {/* Winner */}
-                {hackathon.winner && (
-                    <div className="border-l border-white/10 pl-8">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Trophy className="w-5 h-5 text-yellow-400" />
-                            <span className="text-yellow-400 font-mono text-sm font-bold">
-                                WINNER
-                            </span>
-                        </div>
-
-                        <h4 className="text-lg font-mono font-bold text-white mb-2">
-                            {hackathon.winner.teamName}
-                        </h4>
-                        <p className="text-foss-green font-mono text-sm mb-3">
-                            {hackathon.winner.projectName}
-                        </p>
-
-                        <div className="text-sm text-gray-400 font-sans mb-4">
-                            <span className="text-gray-500 font-mono text-xs uppercase tracking-wider block mb-1">
-                                Team Members
-                            </span>
-                            {hackathon.winner.members.join(", ")}
-                        </div>
-
-                        {hackathon.winner.repoUrl && (
-                            <a
-                                href={hackathon.winner.repoUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-foss-green hover:text-foss-green/80 font-mono text-sm transition-colors"
-                            >
-                                <Github className="w-4 h-4" />
-                                View Project
-                            </a>
-                        )}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-};
+// Past Hackathon Card with Winner - Commented out as not currently used
+// const PastHackathonCard: React.FC<{ hackathon: Hackathon }> = ({
+//     hackathon,
+// }) => {
+//     const hackathonDate = new Date(hackathon.date);
+//     const formattedDate = hackathonDate.toLocaleDateString("en-US", {
+//         month: "short",
+//         day: "numeric",
+//         year: "numeric",
+//     });
+//
+//     return (
+//         <div className="border border-white/10 bg-white/[0.02] p-8">
+//             <div className="grid md:grid-cols-2 gap-8">
+//                 {/* Hackathon Info */}
+//                 <div>
+//                     <h3 className="text-2xl font-display font-bold text-white mb-3">
+//                         {hackathon.name}
+//                     </h3>
+//
+//                     <div className="space-y-2 text-sm text-gray-400 font-mono mb-4">
+//                         <div className="flex items-center gap-2">
+//                             <Calendar className="w-4 h-4 text-foss-green" />
+//                             {formattedDate}
+//                         </div>
+//                         <div className="flex items-center gap-2">
+//                             <Code2 className="w-4 h-4 text-foss-green" />
+//                             {hackathon.theme}
+//                         </div>
+//                     </div>
+//
+//                     <p className="text-gray-400 font-sans text-sm mb-4">
+//                         {hackathon.description}
+//                     </p>
+//
+//                     {hackathon.participants && (
+//                         <div className="flex items-center gap-6 text-sm font-mono text-gray-500">
+//                             <span>{hackathon.participants} participants</span>
+//                             <span>{hackathon.projects} projects</span>
+//                         </div>
+//                     )}
+//                 </div>
+//
+//                 {/* Winner */}
+//                 {hackathon.winner && (
+//                     <div className="border-l border-white/10 pl-8">
+//                         <div className="flex items-center gap-2 mb-4">
+//                             <Trophy className="w-5 h-5 text-yellow-400" />
+//                             <span className="text-yellow-400 font-mono text-sm font-bold">
+//                                 WINNER
+//                             </span>
+//                         </div>
+//
+//                         <h4 className="text-lg font-mono font-bold text-white mb-2">
+//                             {hackathon.winner.teamName}
+//                         </h4>
+//                         <p className="text-foss-green font-mono text-sm mb-3">
+//                             {hackathon.winner.projectName}
+//                         </p>
+//
+//                         <div className="text-sm text-gray-400 font-sans mb-4">
+//                             <span className="text-gray-500 font-mono text-xs uppercase tracking-wider block mb-1">
+//                                 Team Members
+//                             </span>
+//                             {hackathon.winner.members.join(", ")}
+//                         </div>
+//
+//                         {hackathon.winner.repoUrl && (
+//                             <a
+//                                 href={hackathon.winner.repoUrl}
+//                                 target="_blank"
+//                                 rel="noopener noreferrer"
+//                                 className="inline-flex items-center gap-2 text-foss-green hover:text-foss-green/80 font-mono text-sm transition-colors"
+//                             >
+//                                 <Github className="w-4 h-4" />
+//                                 View Project
+//                             </a>
+//                         )}
+//                     </div>
+//                 )}
+//             </div>
+//         </div>
+//     );
+// };
 
 export default Hackathons;

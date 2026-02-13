@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Footer: React.FC = () => {
