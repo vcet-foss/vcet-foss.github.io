@@ -1,6 +1,7 @@
 import React from "react";
 import type { Project } from "../utils/types";
 import { Github, ExternalLink, Users, ChevronRight } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 interface ProjectCardProps {
   project: Project;
@@ -36,55 +37,59 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="group relative border border-gray-800 bg-gray-950/50 p-6 transition-all duration-300 hover:border-foss-green hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(0,255,127,0.1)] flex flex-col h-full">
       <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-        <ExternalLink className="w-4 h-4 text-foss-green" />
-      </div>
+        <NavLink
+          to={project.github_repo}
+          target="_blank"><ExternalLink className="w-4 h-4 text-foss-green" /></NavLink>
+    </div>
 
-      {/* Status + Difficulty badges */}
-      <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <span
-          className={`inline-block px-2 py-0.5 text-xs font-mono border ${statusColors[project.status]}`}
-        >
-          {statusLabels[project.status]}
-        </span>
-        <span
-          className={`inline-block px-2 py-0.5 text-xs font-mono rounded ${difficultyColors[project.difficulty]}`}
-        >
-          {project.difficulty}
-        </span>
-        {project.looking_for_contributors && (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-mono text-foss-green bg-foss-green/10 border border-foss-green/30 animate-pulse">
-            <Users className="w-3 h-3" />
-            Help Wanted
+      {/* Status + Difficulty badges */ }
+  <div className="flex items-center gap-2 mb-3 flex-wrap">
+    <span
+      className={`inline-block px-2 py-0.5 text-xs font-mono border ${statusColors[project.status]}`}
+    >
+      {statusLabels[project.status]}
+    </span>
+    <span
+      className={`inline-block px-2 py-0.5 text-xs font-mono rounded ${difficultyColors[project.difficulty]}`}
+    >
+      {project.difficulty}
+    </span>
+    {project.looking_for_contributors && (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-mono text-foss-green bg-foss-green/10 border border-foss-green/30 animate-pulse">
+        <Users className="w-3 h-3" />
+        Help Wanted
+      </span>
+    )}
+  </div>
+
+  {/* Domain badges */ }
+  {
+    project.domain && project.domain.length > 0 && (
+      <div className="flex items-center gap-1.5 mb-4 flex-wrap">
+        {project.domain.map((d) => (
+          <span
+            key={d}
+            className={`inline-block px-2 py-0.5 text-[10px] font-mono border rounded-sm ${domainColors[d] ?? "text-gray-400 bg-white/5 border-white/10"
+              }`}
+          >
+            {d}
           </span>
-        )}
+        ))}
       </div>
+    )
+  }
 
-      {/* Domain badges */}
-      {project.domain && project.domain.length > 0 && (
-        <div className="flex items-center gap-1.5 mb-4 flex-wrap">
-          {project.domain.map((d) => (
-            <span
-              key={d}
-              className={`inline-block px-2 py-0.5 text-[10px] font-mono border rounded-sm ${domainColors[d] ?? "text-gray-400 bg-white/5 border-white/10"
-                }`}
-            >
-              {d}
-            </span>
-          ))}
-        </div>
-      )}
+  {/* Title */ }
+  <h3 className="text-xl font-display font-bold text-white mb-1 group-hover:text-foss-green transition-colors">
+    {project.name}
+  </h3>
 
-      {/* Title */}
-      <h3 className="text-xl font-display font-bold text-white mb-1 group-hover:text-foss-green transition-colors">
-        {project.name}
-      </h3>
+  {/* Tagline */ }
+  <p className="text-foss-green/70 text-sm font-mono mb-3">
+    {project.tagline}
+  </p>
 
-      {/* Tagline */}
-      <p className="text-foss-green/70 text-sm font-mono mb-3">
-        {project.tagline}
-      </p>
-
-      {/* Description */}
+  {/* Description */ }
       <p className="text-gray-400 text-sm mb-6 flex-grow font-sans leading-relaxed">
         {project.description}
       </p>
@@ -104,28 +109,44 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
         {/* Maintainers */}
         <div className="text-xs text-gray-500 font-mono">
-          {project.maintainers.map((m) => m.name).join(", ")}
+          {project.maintainers.map((m, index) => (
+            <React.Fragment key={index}>
+              {m.contact ? (
+                <NavLink
+                  to={m.contact}
+                  className="hover:text-foss-green hover:underline transition-colors"
+                >
+                  {m.name}
+                </NavLink>
+              ) : (
+                <span>{m.name}</span>
+              )}
+              {index < project.maintainers.length - 1 && ", "}
+            </React.Fragment>
+          ))}
         </div>
 
         {/* Footer: Slug + GitHub link */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-          <div className="flex items-center gap-1 text-gray-500 text-xs font-mono">
+          <div className="flex items-center gap-1 text-gray-500 text-xs font-mono hover:underline hover:text-foss-green transition-colors">
             <ChevronRight className="w-3 h-3" />
-            <span>{project.slug}</span>
+            <NavLink
+              to={project.github_repo}
+              target="_blank">{project.slug}</NavLink>
           </div>
 
-          <a
-            href={project.github_repo}
+          <NavLink
+            to={project.github_repo}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm font-medium text-white hover:text-foss-green transition-colors"
           >
             <Github className="w-4 h-4" />
             <span>Code</span>
-          </a>
+          </NavLink>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

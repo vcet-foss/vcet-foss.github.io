@@ -14,7 +14,7 @@ const Home: React.FC = () => {
         <div className="absolute top-0 inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8 jersey-25-regular">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight leading-[1.1] mb-8 jersey-25-regular">
               BUILDING THE <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-500">
                 FUTURE OF
