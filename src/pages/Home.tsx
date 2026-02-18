@@ -174,7 +174,7 @@ const Home: React.FC = () => {
                 />
               </div>
 
-              {/* CTAs */}
+              {/* CTAs */}git
               <RevealOnScroll delay={400}>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <NavLink to="/projects">
