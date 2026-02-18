@@ -8,8 +8,8 @@ const NotFound: React.FC = () => (
       @keyframes grid-drift { 0%{transform:translateY(0)} 100%{transform:translateY(64px)} }
       .nf-grid {
         background-image:
-          linear-gradient(to right,rgba(255,255,255,.03) 1px,transparent 1px),
-          linear-gradient(to bottom,rgba(255,255,255,.03) 1px,transparent 1px);
+          linear-gradient(to right,rgba(255,255,255,.09) 1px,transparent 1px),
+          linear-gradient(to bottom,rgba(255,255,255,.09) 1px,transparent 1px);
         background-size:64px 64px;
         animation:grid-drift 14s linear infinite;
       }

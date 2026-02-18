@@ -23,6 +23,14 @@ import GlitchText from "../components/GlitchText";
 const Events: React.FC = () => (
     <>
         <style>{`
+      @keyframes grid-drift { 0%{transform:translateY(0)} 100%{transform:translateY(64px)} }
+      .hero-grid {
+        background-image:
+          linear-gradient(to right,rgba(255,255,255,.09) 1px,transparent 1px),
+          linear-gradient(to bottom,rgba(255,255,255,.09) 1px,transparent 1px);
+        background-size:64px 64px;
+        animation:grid-drift 14s linear infinite;
+      }
       .pg-eyebrow {
         font-family:monospace; font-size:.85rem; letter-spacing:.22em;
         color:rgba(0,255,127,.55); display:flex; align-items:center;
@@ -48,6 +56,10 @@ const Events: React.FC = () => (
     `}</style>
 
         <div className="pt-32 pb-24 min-h-screen bg-black">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="hero-grid absolute inset-0" />
+                <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 85% 60% at 50% 0%, transparent 35%, #000 100%)" }} />
+            </div>
             <div style={{ position: "fixed", top: 0, left: 0, width: 520, height: 420, background: "radial-gradient(ellipse at 0% 0%,rgba(0,255,127,.05) 0%,transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">

@@ -98,6 +98,14 @@ const Projects: React.FC = () => {
   return (
     <>
       <style>{`
+        @keyframes grid-drift { 0%{transform:translateY(0)} 100%{transform:translateY(64px)} }
+        .hero-grid {
+          background-image:
+            linear-gradient(to right,rgba(255,255,255,.09) 1px,transparent 1px),
+            linear-gradient(to bottom,rgba(255,255,255,.09) 1px,transparent 1px);
+          background-size:64px 64px;
+          animation:grid-drift 14s linear infinite;
+        }
         /* ── page-level reveal for project cards (simplified for stability) ── */
         @keyframes proj-card-in {
           0%   { opacity:0; transform:translateY(15px); filter:blur(3px); }
@@ -163,6 +171,10 @@ const Projects: React.FC = () => {
       `}</style>
 
       <div className="pt-32 pb-24 min-h-screen bg-black">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="hero-grid absolute inset-0" />
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 85% 60% at 50% 0%, transparent 35%, #000 100%)" }} />
+        </div>
 
         {/* subtle top-left glow */}
         <div style={{

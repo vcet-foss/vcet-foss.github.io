@@ -18,8 +18,8 @@ const Home: React.FC = () => {
         }
         .hero-grid {
           background-image:
-            linear-gradient(to right,  rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+            linear-gradient(to right,  rgba(255,255,255,0.09) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.09) 1px, transparent 1px);
           background-size: 64px 64px;
           animation: grid-drift 14s linear infinite;
         }
@@ -217,7 +217,7 @@ const Home: React.FC = () => {
               </div>
             </RevealOnScroll>
 
-            <div className="grid md:grid-cols-3 gap-px bg-white/5">
+            <div className="grid md:grid-cols-3 gap-px bg-white/10">
               {FEATURES.map((feature, index) => (
                 <RevealOnScroll key={index} delay={index * 120}>
                   <div
