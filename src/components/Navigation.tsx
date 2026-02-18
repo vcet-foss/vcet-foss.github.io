@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Star, Github } from "lucide-react";
 import type { Tab } from "../utils/types";
 import Button from "./Button";
 import Logo from "../assets/vcet-foss-light.svg";
+import { NavLink, useLocation } from "react-router-dom";
 
-interface NavigationProps {
-  activeTab: Tab;
-  setActiveTab: (tab: Tab) => void;
-}
+const GITHUB_ORG = "vcet-foss";
+const GITHUB_URL = `https://github.com/${GITHUB_ORG}`;
 
-const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
+const Navigation: React.FC = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [starCount, setStarCount] = useState<number | null>(null);
+
+  const activeTab = location.pathname === "/" ? "home" : location.pathname.slice(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,18 +24,33 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    async function fetchStars() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/orgs/${GITHUB_ORG}/repos?per_page=100`,
+        );
+        if (!res.ok) return;
+        const repos = await res.json();
+        const total = repos.reduce(
+          (sum: number, repo: { stargazers_count: number }) =>
+            sum + repo.stargazers_count,
+          0,
+        );
+        setStarCount(total);
+      } catch {
+        // silent fail
+      }
+    }
+    fetchStars();
+  }, []);
+
   const navItems: { id: Tab; label: string }[] = [
     { id: "home", label: "Home" },
     { id: "projects", label: "Projects" },
     { id: "community", label: "Community" },
     { id: "about", label: "About" },
   ];
-
-  const handleNavClick = (id: Tab) => {
-    setActiveTab(id);
-    setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <nav
@@ -45,23 +63,23 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div
+          <NavLink
             className="flex items-center gap-2 cursor-pointer group"
-            onClick={() => handleNavClick("home")}
+            to="/"
           >
             <img
               src={Logo}
               alt="VCET FOSS Logo"
               className="h-8 md:h-10 w-auto"
             />
-          </div>
+          </NavLink>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <button
+              <NavLink
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                to={item.id === "home" ? "/" : `/${item.id}`}
                 className={`text-sm font-mono transition-colors relative group ${
                   activeTab === item.id
                     ? "text-foss-green"
@@ -74,15 +92,27 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
                     activeTab === item.id ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 ></span>
-              </button>
+              </NavLink>
             ))}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleNavClick("community")}
+            <NavLink
+              to={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-white/10 hover:border-foss-green/50 rounded-full text-sm font-mono text-gray-300 hover:text-white transition-all group"
             >
-              Join Us
-            </Button>
+              <Github className="w-4 h-4 group-hover:text-foss-green transition-colors" />
+              {starCount !== null && (
+                <>
+                  <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                  <span className="text-xs">{starCount}</span>
+                </>
+              )}
+            </NavLink>
+            <NavLink to="/community">
+              <Button variant="outline" size="sm">
+                Join Us
+              </Button>
+            </NavLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -100,9 +130,10 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
         <div className="md:hidden absolute top-full left-0 right-0 bg-black border-b border-white/10 p-6 animate-in fade-in slide-in-from-top-4">
           <div className="flex flex-col space-y-4">
             {navItems.map((item) => (
-              <button
+              <NavLink
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                to={item.id === "home" ? "/" : `/${item.id}`}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={`text-left text-lg font-mono py-2 border-l-2 pl-4 transition-colors ${
                   activeTab === item.id
                     ? "text-foss-green border-foss-green bg-foss-green/5"
@@ -110,15 +141,32 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
                 }`}
               >
                 {item.label}
-              </button>
+              </NavLink>
             ))}
-            <Button
-              variant="primary"
-              className="w-full mt-4"
-              onClick={() => handleNavClick("community")}
+            <NavLink
+              to={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 py-3 border border-white/10 font-mono text-gray-300 hover:text-white hover:border-foss-green/50 transition-all"
             >
-              Join Discord
-            </Button>
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+              {starCount !== null && (
+                <span className="flex items-center gap-1 ml-1">
+                  <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                  <span className="text-xs">{starCount}</span>
+                </span>
+              )}
+            </NavLink>
+            <NavLink to="/community" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button
+                variant="primary"
+                className="w-full mt-2"
+              >
+                Join Discord
+              </Button>
+            </NavLink>
           </div>
         </div>
       )}
