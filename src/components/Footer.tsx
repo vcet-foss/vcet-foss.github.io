@@ -219,8 +219,7 @@ const Footer: React.FC = () => {
                     maxWidth: "22rem",
                   }}
                 >
-                  Building a community of developers, designers, and innovators — solving
-                  real-world problems through open source collaboration.
+                  BUILDING THE FUTURE OF OPEN SOURCE.
                 </p>
 
                 {/* terminal line */}

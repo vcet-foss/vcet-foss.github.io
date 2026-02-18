@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         .hero-badge {
           display: inline-flex; align-items: center; gap: 8px;
           border: 1px solid rgba(0,255,127,.2); padding: 5px 14px;
-          font-family: monospace; font-size: 0.68rem;
+          font-family: monospace; font-size: 0.85rem;
           letter-spacing: 0.18em; color: rgba(0,255,127,.7);
           background: rgba(0,255,127,.04); margin-bottom: 2rem;
         }
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
         .cta-btn:hover { animation: cta-btn-glitch 0.35s steps(1) forwards; }
 
         .section-eyebrow {
-          font-family: monospace; font-size: 0.62rem;
+          font-family: monospace; font-size: 0.85rem;
           letter-spacing: 0.22em; color: rgba(0,255,127,.55);
           display: flex; align-items: center; gap: 0.5rem;
           margin-bottom: 0.7rem;
@@ -264,11 +264,11 @@ const Home: React.FC = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-3xl">
                 <p style={{
-                  fontFamily: "monospace", fontSize: "0.62rem", letterSpacing: "0.22em",
-                  color: "rgba(0,0,0,.4)", display: "flex", alignItems: "center",
-                  gap: "0.5rem", marginBottom: "0.7rem"
+                  fontFamily: "monospace", fontSize: "1.1rem", letterSpacing: "0.22em",
+                  color: "#000", fontWeight: "bold", display: "flex", alignItems: "center",
+                  gap: "0.8rem", marginBottom: "1rem"
                 }}>
-                  <span style={{ display: "inline-block", width: 16, height: 1, background: "rgba(0,0,0,.35)" }} />
+                  <span style={{ display: "inline-block", width: 24, height: 2, background: "#000" }} />
                   GET STARTED
                 </p>
                 <h2 style={{

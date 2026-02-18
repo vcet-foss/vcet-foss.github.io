@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
 
         /* ── eyebrow label ── */
         .proj-eyebrow {
-          font-family: monospace; font-size: 0.62rem;
+          font-family: monospace; font-size: 0.85rem;
           letter-spacing: 0.22em; color: rgba(0,255,127,.55);
           display: flex; align-items: center; gap: 0.5rem;
           margin-bottom: 0.5rem;
@@ -187,7 +187,8 @@ const Projects: React.FC = () => {
               </h1>
               <p className="text-gray-400 font-mono text-base max-w-xl leading-relaxed"
                 style={{ borderLeft: "2px solid rgba(0,255,127,.2)", paddingLeft: "1rem" }}>
-                Open-source initiatives built by VCET students. Contribute code, design, or ideas.
+                Open-source initiatives built by VCET students.
+                <br />Contribute code, design, or ideas.
               </p>
             </RevealOnScroll>
 
@@ -199,7 +200,7 @@ const Projects: React.FC = () => {
                     border: "1px solid rgba(0,255,127,.15)",
                     padding: "4px 12px",
                     background: "rgba(0,255,127,.04)",
-                    fontFamily: "monospace", fontSize: "0.7rem",
+                    fontFamily: "monospace", fontSize: "0.85rem",
                     letterSpacing: "0.15em", color: "rgba(0,255,127,.6)"
                   }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00ff7f", display: "inline-block", boxShadow: "0 0 6px rgba(0,255,127,.8)" }} />

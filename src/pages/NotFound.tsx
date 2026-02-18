@@ -3,8 +3,8 @@ import { Home, Github, Code, ArrowUpRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const NotFound: React.FC = () => (
-  <>
-    <style>{`
+    <>
+        <style>{`
       @keyframes grid-drift { 0%{transform:translateY(0)} 100%{transform:translateY(64px)} }
       .nf-grid {
         background-image:
@@ -59,67 +59,67 @@ const NotFound: React.FC = () => (
       .nf-btn-primary:hover { background:rgba(0,255,127,.9); }
     `}</style>
 
-    <div className="min-h-screen bg-black flex items-center justify-center px-6 relative overflow-hidden">
+        <div className="min-h-screen bg-black flex items-center justify-center px-6 relative overflow-hidden">
 
-      {/* animated grid */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="nf-grid absolute inset-0" />
-        <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 80% 70% at 50% 50%,transparent 40%,#000 100%)" }} />
-      </div>
+            {/* animated grid */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="nf-grid absolute inset-0" />
+                <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 70% at 50% 50%,transparent 40%,#000 100%)" }} />
+            </div>
 
-      {/* ambient glow */}
-      <div style={{ position:"absolute", top:"15%", left:"8%", width:480, height:380, background:"radial-gradient(ellipse at 0% 50%,rgba(0,255,127,.065) 0%,transparent 65%)", pointerEvents:"none" }} />
+            {/* ambient glow */}
+            <div style={{ position: "absolute", top: "15%", left: "8%", width: 480, height: 380, background: "radial-gradient(ellipse at 0% 50%,rgba(0,255,127,.065) 0%,transparent 65%)", pointerEvents: "none" }} />
 
-      <div className="relative z-10 max-w-3xl w-full text-center">
+            <div className="relative z-10 max-w-3xl w-full text-center">
 
-        {/* badge */}
-        <div style={{ display:"inline-flex", alignItems:"center", gap:8, border:"1px solid rgba(0,255,127,.2)", padding:"5px 14px", fontFamily:"monospace", fontSize:".68rem", letterSpacing:".18em", color:"rgba(0,255,127,.7)", background:"rgba(0,255,127,.04)", marginBottom:"2rem" }}>
-          <span className="nf-dot" style={{ width:6, height:6, borderRadius:"50%", background:"#00ff7f", display:"inline-block" }} />
-          ERROR 404 · PAGE NOT FOUND
+                {/* badge */}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, border: "1px solid rgba(0,255,127,.2)", padding: "5px 14px", fontFamily: "monospace", fontSize: ".85rem", letterSpacing: ".18em", color: "rgba(0,255,127,.7)", background: "rgba(0,255,127,.04)", marginBottom: "2rem" }}>
+                    <span className="nf-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: "#00ff7f", display: "inline-block" }} />
+                    ERROR 404 · PAGE NOT FOUND
+                </div>
+
+                {/* 404 */}
+                <div style={{ fontFamily: '"Jersey 25",monospace', fontSize: "clamp(7rem,22vw,15rem)", lineHeight: 1, letterSpacing: ".02em", marginBottom: "1.5rem" }}>
+                    <span className="nf-4" style={{ color: "#fff" }}>4</span>
+                    <span className="nf-0">0</span>
+                    <span className="nf-4" style={{ color: "#fff", animationDelay: ".6s" }}>4</span>
+                </div>
+
+                {/* heading */}
+                <h2 style={{ fontFamily: '"Jersey 25",monospace', fontSize: "clamp(1.6rem,4vw,2.5rem)", letterSpacing: ".04em", color: "#fff", marginBottom: "1rem" }}>
+                    Lost in the Void?
+                </h2>
+
+                {/* subtext */}
+                <p className="text-gray-500 font-mono text-sm leading-relaxed mb-10 max-w-lg mx-auto"
+                    style={{ borderLeft: "2px solid rgba(0,255,127,.18)", paddingLeft: "1rem", textAlign: "left" }}>
+                    Looks like this page took a detour through{" "}
+                    <code style={{ color: "rgba(0,255,127,.65)" }}>/dev/null</code>. Don't worry —
+                    even the best developers encounter 404s.
+                </p>
+
+                {/* action buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <NavLink to="/">
+                        <button className="nf-btn-primary">
+                            <Home className="w-4 h-4" /> Back to Home
+                        </button>
+                    </NavLink>
+                    <NavLink to="/projects">
+                        <button className="nf-btn">
+                            <Code className="w-4 h-4" /> Browse Projects
+                        </button>
+                    </NavLink>
+                    <a href="https://github.com/vcet-foss" target="_blank" rel="noopener noreferrer">
+                        <button className="nf-btn">
+                            <Github className="w-4 h-4" /> GitHub <ArrowUpRight className="w-3 h-3 opacity-60" />
+                        </button>
+                    </a>
+                </div>
+
+            </div>
         </div>
-
-        {/* 404 */}
-        <div style={{ fontFamily:'"Jersey 25",monospace', fontSize:"clamp(7rem,22vw,15rem)", lineHeight:1, letterSpacing:".02em", marginBottom:"1.5rem" }}>
-          <span className="nf-4" style={{ color:"#fff" }}>4</span>
-          <span className="nf-0">0</span>
-          <span className="nf-4" style={{ color:"#fff", animationDelay:".6s" }}>4</span>
-        </div>
-
-        {/* heading */}
-        <h2 style={{ fontFamily:'"Jersey 25",monospace', fontSize:"clamp(1.6rem,4vw,2.5rem)", letterSpacing:".04em", color:"#fff", marginBottom:"1rem" }}>
-          Lost in the Void?
-        </h2>
-
-        {/* subtext */}
-        <p className="text-gray-500 font-mono text-sm leading-relaxed mb-10 max-w-lg mx-auto"
-          style={{ borderLeft:"2px solid rgba(0,255,127,.18)", paddingLeft:"1rem", textAlign:"left" }}>
-          Looks like this page took a detour through{" "}
-          <code style={{ color:"rgba(0,255,127,.65)" }}>/dev/null</code>. Don't worry —
-          even the best developers encounter 404s.
-        </p>
-
-        {/* action buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <NavLink to="/">
-            <button className="nf-btn-primary">
-              <Home className="w-4 h-4" /> Back to Home
-            </button>
-          </NavLink>
-          <NavLink to="/projects">
-            <button className="nf-btn">
-              <Code className="w-4 h-4" /> Browse Projects
-            </button>
-          </NavLink>
-          <a href="https://github.com/vcet-foss" target="_blank" rel="noopener noreferrer">
-            <button className="nf-btn">
-              <Github className="w-4 h-4" /> GitHub <ArrowUpRight className="w-3 h-3 opacity-60" />
-            </button>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </>
+    </>
 );
 
 export default NotFound;

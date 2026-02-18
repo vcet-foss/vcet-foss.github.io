@@ -13,25 +13,25 @@ import RevealOnScroll from "../components/RevealOnScroll";
 ──────────────────────────────────────────────────────────────────── */
 
 const VALUES = [
-  {
-    Icon: Target, idx: "01", title: "Our Mission",
-    body: "To bridge the gap between academic learning and industry standards by building real-world software together.",
-  },
-  {
-    Icon: Code2, idx: "02", title: "What We Do",
-    body: "We host hackathons, conduct workshops, and maintain open-source repositories for college utilities.",
-  },
-  {
-    Icon: Heart, idx: "03", title: "Core Values",
-    body: "Inclusivity, transparency, and collaboration. No gatekeeping. Everyone is welcome to learn and contribute.",
-  },
+    {
+        Icon: Target, idx: "01", title: "Our Mission",
+        body: "To bridge the gap between academic learning and industry standards by building real-world software together.",
+    },
+    {
+        Icon: Code2, idx: "02", title: "What We Do",
+        body: "We host hackathons, conduct workshops, and maintain open-source repositories for college utilities.",
+    },
+    {
+        Icon: Heart, idx: "03", title: "Core Values",
+        body: "Inclusivity, transparency, and collaboration. No gatekeeping. Everyone is welcome to learn and contribute.",
+    },
 ];
 
 const About: React.FC = () => (
-  <>
-    <style>{`
+    <>
+        <style>{`
       .pg-eyebrow {
-        font-family: monospace; font-size: .62rem; letter-spacing: .22em;
+        font-family: monospace; font-size: .85rem; letter-spacing: .22em;
         color: rgba(0,255,127,.55); display: flex; align-items: center;
         gap: .5rem; margin-bottom: .6rem;
       }
@@ -83,63 +83,59 @@ const About: React.FC = () => (
       }
       .team-glitch { animation: team-glitch 5s steps(1) infinite; display: inline-block; }
     `}</style>
+        <div className="pt-32 pb-24 min-h-screen bg-black">
+            {/* ambient glow */}
+            <div style={{ position: "fixed", top: 0, left: 0, width: 520, height: 420, background: "radial-gradient(ellipse at 0% 0%,rgba(0,255,127,.055) 0%,transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
+            <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+                {/* ── HEADER ── */}
+                <div className="mb-16 relative pb-8">
+                    <div className="pg-hline" />
+                    <RevealOnScroll>
+                        <p className="pg-eyebrow">VCET FOSS</p>
+                        <h1 className="font-display font-bold text-white jersey-25-regular mb-5"
+                            style={{ fontSize: "clamp(2.8rem,7vw,5.5rem)", lineHeight: 1.0, letterSpacing: "0.02em" }}>
+                            <GlitchText text="About VCET FOSS" speed={40} />
+                        </h1>
+                        <p className="text-gray-400 font-mono text-base leading-relaxed"
+                            style={{ maxWidth: "38rem", borderLeft: "2px solid rgba(0,255,127,.2)", paddingLeft: "1rem" }}>
+                            A student-run initiative dedicated to fostering a culture of innovation and
+                            open-source contribution at Vidyavardhini's College of Engineering and Technology.
+                        </p>
+                    </RevealOnScroll>
+                </div>
+                {/* ── VALUE CARDS ── */}
+                <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-24">
+                    {VALUES.map(({ Icon, idx, title, body }, i) => (
+                        <RevealOnScroll key={idx} delay={(i + 1) * 100}>
+                            <div className="val-card">
+                                <p style={{ fontFamily: "monospace", fontSize: ".85rem", letterSpacing: ".2em", color: "rgba(0,255,127,.3)", marginBottom: "1.2rem" }}>{idx}</p>
+                                <div className="icon-box text-foss-green"><Icon size={18} /></div>
+                                <h3 style={{ fontFamily: '"Jersey 25",monospace', fontSize: "1.1rem", letterSpacing: ".05em", color: "#fff", marginBottom: ".55rem" }}>{title}</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed font-mono">{body}</p>
+                            </div>
+                        </RevealOnScroll>
+                    ))}
+                </div>
 
-    <div className="pt-32 pb-24 min-h-screen bg-black">
-      {/* ambient glow */}
-      <div style={{ position:"fixed", top:0, left:0, width:520, height:420, background:"radial-gradient(ellipse at 0% 0%,rgba(0,255,127,.055) 0%,transparent 65%)", pointerEvents:"none", zIndex:0 }} />
+                {/* ── TEAM ── */}
+                <RevealOnScroll delay={400}>
+                    <div className="border-t border-white/8 pt-20 text-center">
+                        <p className="pg-eyebrow justify-center">THE PEOPLE BEHIND IT</p>
+                        <h2 style={{ fontFamily: '"Jersey 25",monospace', fontSize: "clamp(1.6rem,3.5vw,2.2rem)", color: "#fff", letterSpacing: ".04em", marginBottom: "1.5rem" }}>
+                            Who builds this?
+                        </h2>
+                        <div className="team-glitch" style={{ fontFamily: '"Jersey 25",monospace', fontSize: "clamp(4rem,14vw,9rem)", color: "#00ff7f", lineHeight: 1, letterSpacing: ".02em" }}>
+                            <GlitchText text="YOU ALL!" speed={60} />
+                        </div>
+                        <p className="text-gray-600 font-mono text-xs mt-4 tracking-widest">
+                            EVERY CONTRIBUTOR · EVERY COMMIT · EVERY PR
+                        </p>
+                    </div>
+                </RevealOnScroll>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-
-        {/* ── HEADER ── */}
-        <div className="mb-16 relative pb-8">
-          <div className="pg-hline" />
-          <RevealOnScroll>
-            <p className="pg-eyebrow">VCET FOSS</p>
-            <h1 className="font-display font-bold text-white jersey-25-regular mb-5"
-              style={{ fontSize:"clamp(2.8rem,7vw,5.5rem)", lineHeight:1.0, letterSpacing:"0.02em" }}>
-              <GlitchText text="About VCET FOSS" speed={40} />
-            </h1>
-            <p className="text-gray-400 font-mono text-base leading-relaxed"
-              style={{ maxWidth:"38rem", borderLeft:"2px solid rgba(0,255,127,.2)", paddingLeft:"1rem" }}>
-              A student-run initiative dedicated to fostering a culture of innovation and
-              open-source contribution at Vidyavardhini's College of Engineering and Technology.
-            </p>
-          </RevealOnScroll>
-        </div>
-
-        {/* ── VALUE CARDS ── */}
-        <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-24">
-          {VALUES.map(({ Icon, idx, title, body }, i) => (
-            <RevealOnScroll key={idx} delay={(i + 1) * 100}>
-              <div className="val-card">
-                <p style={{ fontFamily:"monospace", fontSize:".6rem", letterSpacing:".2em", color:"rgba(0,255,127,.3)", marginBottom:"1.2rem" }}>{idx}</p>
-                <div className="icon-box text-foss-green"><Icon size={18} /></div>
-                <h3 style={{ fontFamily:'"Jersey 25",monospace', fontSize:"1.1rem", letterSpacing:".05em", color:"#fff", marginBottom:".55rem" }}>{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed font-mono">{body}</p>
-              </div>
-            </RevealOnScroll>
-          ))}
-        </div>
-
-        {/* ── TEAM ── */}
-        <RevealOnScroll delay={400}>
-          <div className="border-t border-white/8 pt-20 text-center">
-            <p className="pg-eyebrow justify-center">THE PEOPLE BEHIND IT</p>
-            <h2 style={{ fontFamily:'"Jersey 25",monospace', fontSize:"clamp(1.6rem,3.5vw,2.2rem)", color:"#fff", letterSpacing:".04em", marginBottom:"1.5rem" }}>
-              Who builds this?
-            </h2>
-            <div className="team-glitch" style={{ fontFamily:'"Jersey 25",monospace', fontSize:"clamp(4rem,14vw,9rem)", color:"#00ff7f", lineHeight:1, letterSpacing:".02em" }}>
-              <GlitchText text="YOU ALL!" speed={60} />
             </div>
-            <p className="text-gray-600 font-mono text-xs mt-4 tracking-widest">
-              EVERY CONTRIBUTOR · EVERY COMMIT · EVERY PR
-            </p>
-          </div>
-        </RevealOnScroll>
-
-      </div>
-    </div>
-  </>
+        </div>
+    </>
 );
 
 export default About;
