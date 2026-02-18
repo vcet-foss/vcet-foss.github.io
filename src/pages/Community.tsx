@@ -12,7 +12,7 @@ const STEPS = [
 ];
 
 const CHANNELS = [
-    { Icon: MessageSquare, idx: "01", title: "Join the Discord", body: "The heartbeat of our community. Ask questions, share memes, and find teammates.", link: "https://discord.gg/BHcWFfXzMm", linkLabel: "discord.gg/vcet-foss", bg: "rgba(99,102,241,.14)", ic: "rgb(129,140,248)" },
+    { Icon: MessageSquare, idx: "01", title: "Join the Discord", body: "The heartbeat of our community. Ask questions, share memes, and find teammates.", link: "https://discord.gg/CXNustDut3", linkLabel: "discord.gg/CXNustDut3", bg: "rgba(99,102,241,.14)", ic: "rgb(129,140,248)" },
     { Icon: Github, idx: "02", title: "GitHub Organization", body: "All our code is public. Star our repos, fork them, and open your first Pull Request.", link: "https://github.com/vcet-foss", linkLabel: "github.com/vcet-foss", bg: "rgba(255,255,255,.07)", ic: "#ffffff" },
     { Icon: Users, idx: "03", title: "Weekly Meetups", body: "We meet every Friday at 4 PM in the Lab. Code reviews, tech talks, and pizza.", link: null, linkLabel: null, bg: "rgba(236,72,153,.12)", ic: "rgb(244,114,182)" },
 ];

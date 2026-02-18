@@ -39,7 +39,7 @@ const Community: React.FC = () => {
                       and find teammates.
                     </p>
                     <a
-                      href="https://discord.gg/BHcWFfXzMm"
+                      href="https://discord.gg/CXNustDut3"
                       target="_blank"
                       className="inline-flex items-center text-foss-green font-mono text-sm hover:underline"
                     >

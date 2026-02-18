@@ -282,7 +282,7 @@ const ProjectGuidelines: React.FC = () => (
                             <p className="text-gray-400 font-mono text-sm leading-relaxed mb-5" style={{ maxWidth: "32rem" }}>
                                 Join our Discord community to discuss project standards, ask questions, or suggest improvements.
                             </p>
-                            <a href="https://discord.gg/BHcWFfXzMm" target="_blank" rel="noopener noreferrer"
+                            <a href="https://discord.gg/CXNustDut3" target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors">
                                 Join Discord <ArrowUpRight className="w-4 h-4" />
                             </a>

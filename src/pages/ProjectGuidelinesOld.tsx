@@ -241,7 +241,7 @@ const ProjectGuidelines: React.FC = () => {
                             Join our Discord community to discuss project standards, ask questions, or suggest improvements to these guidelines.
                         </p>
                         <a
-                            href="https://discord.gg/BHcWFfXzMm"
+                            href="https://discord.gg/CXNustDut3"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block px-6 py-3 bg-foss-green text-black font-mono text-sm hover:bg-foss-green/90 transition-colors"

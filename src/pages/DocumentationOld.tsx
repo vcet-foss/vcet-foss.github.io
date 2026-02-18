@@ -26,7 +26,7 @@ const DOC_SECTIONS: DocSection[] = [
             { label: "What is Open Source?", url: "https://opensource.guide/", external: true },
             { label: "How to Contribute", url: "#/community" },
             { label: "Finding Your First Issue", url: "https://github.com/vcet-foss", external: true },
-            { label: "Join Our Discord", url: "https://discord.gg/BHcWFfXzMm", external: true },
+            { label: "Join Our Discord", url: "https://discord.gg/CXNustDut3", external: true },
         ],
     },
     {
@@ -137,7 +137,7 @@ const Documentation: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <NavLink
-                                to="https://discord.gg/BHcWFfXzMm"
+                                to="https://discord.gg/CXNustDut3"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-block px-6 py-3 bg-foss-green text-black font-mono text-sm hover:bg-foss-green/90 transition-colors"

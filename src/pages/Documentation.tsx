@@ -18,7 +18,7 @@ const DOC_SECTIONS: DocSection[] = [
             { label: "What is Open Source?", url: "https://opensource.guide/", external: true },
             { label: "How to Contribute", url: "/community" },
             { label: "Finding Your First Issue", url: "https://github.com/vcet-foss", external: true },
-            { label: "Join Our Discord", url: "https://discord.gg/BHcWFfXzMm", external: true },
+            { label: "Join Our Discord", url: "https://discord.gg/CXNustDut3", external: true },
         ],
     },
     {
@@ -196,7 +196,7 @@ const Documentation: React.FC = () => (
                             Can't find what you're looking for? Join our Discord community or reach out via email.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                            <a href="https://discord.gg/BHcWFfXzMm" target="_blank" rel="noopener noreferrer"
+                            <a href="https://discord.gg/CXNustDut3" target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors">
                                 Join Discord
                             </a>
