@@ -121,7 +121,7 @@ const Home: React.FC = () => {
           }} />
 
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10 w-full">
-            <div className="max-w-5xl">
+            <div className="max-w-5xl md:ml-32">
 
               {/* badge */}
               <div className="hero-badge">
@@ -165,7 +165,8 @@ const Home: React.FC = () => {
                 }}
               >
                 <GlitchText
-                  text="A community of student developers at VCET solving real campus problems. Stop building alone. Join the movement."
+                  text="A community of student developers at VCET solving real campus problems. Stop building alone. 
+                  Join the movement !"
                   as="p"
                   speed={30}
                   className="text-gray-400 font-mono text-lg leading-relaxed"
