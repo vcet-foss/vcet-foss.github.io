@@ -240,7 +240,7 @@ const Home: React.FC = () => {
                       className="w-10 h-10 flex items-center justify-center mb-5 text-foss-green group-hover:scale-110 transition-transform duration-300"
                       style={{ border: "1px solid rgba(0,255,127,.2)", background: "rgba(0,255,127,.04)" }}
                     >
-                      <feature.icon size={18} />
+                      <feature.icon size={20} />
                     </div>
                     <h3 style={{ fontFamily: '"Jersey 25", monospace', fontSize: "1.12rem", letterSpacing: "0.05em", color: "#fff", marginBottom: "0.55rem" }}>
                       {feature.title}
@@ -279,7 +279,7 @@ const Home: React.FC = () => {
                   READY TO SHIP CODE?
                 </h2>
                 <p style={{
-                  fontFamily: "monospace", fontSize: "1rem", color: "rgba(0,0,0,.58)",
+                  fontFamily: "monospace", fontSize: "1rem", color: "#000", fontWeight: 600,
                   maxWidth: "34rem", lineHeight: 1.6, marginBottom: "2.5rem"
                 }}>
                   Whether you're a complete beginner or a seasoned pro, there's a place for you here.
