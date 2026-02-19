@@ -80,7 +80,11 @@ const FALLBACK_PROJECTS: Project[] = [
 
 /** Default sort: active projects first, then by name */
 function defaultSort(projects: Project[]): Project[] {
-  const statusOrder: Record<string, number> = { active: 0, dormant: 1, idea: 2 };
+  const statusOrder: Record<string, number> = {
+    active: 0,
+    dormant: 1,
+    idea: 2,
+  };
   return [...projects].sort((a, b) => {
     const sa = statusOrder[a.status] ?? 9;
     const sb = statusOrder[b.status] ?? 9;

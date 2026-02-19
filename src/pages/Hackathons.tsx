@@ -1,296 +1,145 @@
 import React from "react";
-import { Code2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import RevealOnScroll from "../components/RevealOnScroll";
+import GlitchText from "../components/GlitchText";
 
-interface Hackathon {
-    id: string;
-    name: string;
-    date: string;
-    theme: string;
-    status: "active" | "upcoming" | "past";
-    participants?: number;
-    projects?: number;
-    winner?: {
-        teamName: string;
-        projectName: string;
-        members: string[];
-        repoUrl?: string;
-    };
-    registrationLink?: string;
-    description: string;
-}
+const Hackathons: React.FC = () => (
+  <>
+    <style>{`
+      @keyframes grid-drift { 0%{transform:translateY(0)} 100%{transform:translateY(64px)} }
+      .hero-grid {
+        background-image:
+          linear-gradient(to right,rgba(255,255,255,.09) 1px,transparent 1px),
+          linear-gradient(to bottom,rgba(255,255,255,.09) 1px,transparent 1px);
+        background-size:64px 64px;
+        animation:grid-drift 14s linear infinite;
+      }
+      .pg-eyebrow {
+        font-family:monospace; font-size:.85rem; letter-spacing:.22em;
+        color:rgba(0,255,127,.55); display:flex; align-items:center;
+        gap:.5rem; margin-bottom:.6rem;
+      }
+      .pg-eyebrow::before { content:""; display:inline-block; width:16px; height:1px; background:rgba(0,255,127,.5); }
+      .pg-hline { position:absolute; bottom:0; left:0; height:1px; width:100%; background:linear-gradient(90deg,#00ff7f 0%,rgba(0,255,127,.1) 60%,transparent 100%); }
 
-// Sample data - replace with actual data source
-const HACKATHONS: Hackathon[] = [
-    {
-        id: "1",
-        name: "VCET HackFest 2026",
-        date: "2026-04-10",
-        theme: "AI for Good",
-        status: "upcoming",
-        description:
-            "24-hour hackathon focused on building AI-powered solutions for social impact. Categories include healthcare, education, environment, and accessibility.",
-        registrationLink: "#",
-    },
-    {
-        id: "2",
-        name: "Web3 Build Weekend",
-        date: "2026-01-15",
-        theme: "Decentralized Apps",
-        status: "past",
-        participants: 56,
-        projects: 12,
-        winner: {
-            teamName: "ChainGuard",
-            projectName: "DecentraVote",
-            members: ["Ritesh Gharat", "Prashant Dhuri", "Aditya Sharma"],
-            repoUrl: "https://github.com/vcet-foss/decentravote",
-        },
-        description:
-            "Weekend hackathon exploring blockchain technology and decentralized applications.",
-    },
-];
+      .hk-cta {
+        border:1px solid rgba(0,255,127,.22); background:rgba(0,255,127,.04);
+        padding:2.5rem; position:relative; overflow:hidden;
+      }
+    `}</style>
 
-const Hackathons: React.FC = () => {
+    <div className="pt-32 pb-24 min-h-screen bg-black">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="hero-grid absolute inset-0" />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse 85% 60% at 50% 0%, transparent 35%, #000 100%)",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 520,
+          height: 420,
+          background:
+            "radial-gradient(ellipse at 0% 0%,rgba(0,255,127,.05) 0%,transparent 65%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
 
-    return (
-        <div className="pt-32 pb-24 min-h-screen bg-black">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                {/* Hero */}
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
-                        Hackathons
-                    </h1>
-                    <p className="text-xl text-gray-400 font-sans max-w-2xl mx-auto mb-8">
-                        Build innovative solutions, collaborate with peers, and showcase your skills in our hackathons.
-                    </p>
-                    {/* {(activeHackathons.length > 0 || upcomingHackathons.length > 0) && (
-                        <NavLink
-                            to={
-                                activeHackathons[0]?.registrationLink ||
-                                upcomingHackathons[0]?.registrationLink ||
-                                "#"
-                            }
-                            className="inline-block px-8 py-4 bg-foss-green text-black font-mono text-lg font-bold hover:bg-foss-green/90 transition-all hover:shadow-[0_0_20px_rgba(0,255,127,0.3)]"
-                        >
-                            Register Now
-                        </NavLink>
-                    )} */}
-                </div>
-
-                {/* Active Hackathons */}
-                {/* {activeHackathons.length > 0 && (
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-display font-bold text-white mb-8 flex items-center gap-3">
-                            <span className="w-2 h-8 bg-red-500 animate-pulse"></span>
-                            Live Now
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {activeHackathons.map((hackathon) => (
-                                <HackathonCard key={hackathon.id} hackathon={hackathon} />
-                            ))}
-                        </div>
-                    </section>
-                )} */}
-
-                {/* Upcoming Hackathons */}
-                {/* {upcomingHackathons.length > 0 && (
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-display font-bold text-white mb-8 flex items-center gap-3">
-                            <span className="w-2 h-8 bg-foss-green"></span>
-                            Upcoming
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {upcomingHackathons.map((hackathon) => (
-                                <HackathonCard key={hackathon.id} hackathon={hackathon} />
-                            ))}
-                        </div>
-                    </section>
-                )} */}
-
-                {/* Past Hackathons */}
-                {/* {pastHackathons.length > 0 && (
-                    <section className="mb-16">
-                        <h2 className="text-3xl font-display font-bold text-white mb-8 flex items-center gap-3">
-                            <span className="w-2 h-8 bg-gray-600"></span>
-                            Hall of Fame
-                        </h2>
-                        <div className="space-y-6">
-                            {pastHackathons.map((hackathon) => (
-                                <PastHackathonCard key={hackathon.id} hackathon={hackathon} />
-                            ))}
-                        </div>
-                    </section>
-                )} */}
-
-                {/* Host a Hackathon CTA */}
-                <div className="border border-foss-green/20 bg-foss-green/[0.05] p-12 text-center">
-                    <h3 className="text-3xl font-display font-bold text-white mb-4">
-                        Want to host a hackathon?
-                    </h3>
-                    <p className="text-gray-400 font-sans mb-8 max-w-2xl mx-auto">
-                        We provide mentorship, resources, and support to help you organize
-                        successful hackathons. Whether it's a 24-hour coding sprint or a
-                        week-long challenge, we've got you covered.
-                    </p>
-                    <a
-                        href="mailto:vcetopensource@gmail.com"
-                        className="inline-block px-8 py-4 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors"
-                    >
-                        Get in Touch
-                    </a>
-                </div>
-
-                {/* Empty State */}
-                {HACKATHONS.length === 0 && (
-                    <div className="text-center py-20 border border-dashed border-white/10">
-                        <Code2 className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                        <p className="text-gray-500 font-mono text-lg mb-2">
-                            No hackathons scheduled yet
-                        </p>
-                        <p className="text-gray-600 text-sm font-sans">
-                            Stay tuned for upcoming events!
-                        </p>
-                    </div>
-                )}
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        {/* HEADER */}
+        <div className="mb-14 relative pb-8">
+          <div className="pg-hline" />
+          <RevealOnScroll>
+            <p className="pg-eyebrow">VCET FOSS</p>
+            <h1
+              className="font-display font-bold text-white jersey-25-regular mb-5"
+              style={{
+                fontSize: "clamp(2.8rem,7vw,5.5rem)",
+                lineHeight: 1.0,
+                letterSpacing: "0.02em",
+              }}
+            >
+              <GlitchText text="Hackathons" speed={40} />
+            </h1>
+            <p
+              className="text-gray-400 font-mono text-base leading-relaxed"
+              style={{
+                borderLeft: "2px solid rgba(0,255,127,.2)",
+                paddingLeft: "1rem",
+              }}
+            >
+              Build innovative solutions, collaborate with peers, and showcase
+              your skills.
+            </p>
+          </RevealOnScroll>
         </div>
-    );
-};
 
-// Hackathon Card (Active/Upcoming) - Commented out as not currently used
-// const HackathonCard: React.FC<{ hackathon: Hackathon }> = ({ hackathon }) => {
-//     const hackathonDate = new Date(hackathon.date);
-//     const formattedDate = hackathonDate.toLocaleDateString("en-US", {
-//         month: "short",
-//         day: "numeric",
-//         year: "numeric",
-//     });
-//
-//     return (
-//         <div className="border border-white/10 bg-white/[0.02] p-8 hover:border-foss-green/50 transition-all relative overflow-hidden">
-//             {hackathon.status === "active" && (
-//                 <div className="absolute top-4 right-4">
-//                     <span className="px-3 py-1 bg-red-500 text-white text-xs font-mono font-bold animate-pulse">
-//                         LIVE
-//                     </span>
-//                 </div>
-//             )}
-//
-//             <h3 className="text-2xl font-display font-bold text-white mb-2">
-//                 {hackathon.name}
-//             </h3>
-//
-//             <div className="flex items-center gap-4 text-sm text-gray-400 font-mono mb-4">
-//                 <div className="flex items-center gap-2">
-//                     <Calendar className="w-4 h-4 text-foss-green" />
-//                     {formattedDate}
-//                 </div>
-//                 <div className="flex items-center gap-2">
-//                     <Code2 className="w-4 h-4 text-foss-green" />
-//                     {hackathon.theme}
-//                 </div>
-//             </div>
-//
-//             <p className="text-gray-400 font-sans text-sm mb-6 leading-relaxed">
-//                 {hackathon.description}
-//             </p>
-//
-//             {hackathon.registrationLink && (
-//                 <a
-//                     href={hackathon.registrationLink}
-//                     className="inline-flex items-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors"
-//                 >
-//                     {hackathon.status === "active" ? "Join Now" : "Register"}
-//                     <ExternalLink className="w-4 h-4" />
-//                 </a>
-//             )}
-//         </div>
-//     );
-// };
-
-// Past Hackathon Card with Winner - Commented out as not currently used
-// const PastHackathonCard: React.FC<{ hackathon: Hackathon }> = ({
-//     hackathon,
-// }) => {
-//     const hackathonDate = new Date(hackathon.date);
-//     const formattedDate = hackathonDate.toLocaleDateString("en-US", {
-//         month: "short",
-//         day: "numeric",
-//         year: "numeric",
-//     });
-//
-//     return (
-//         <div className="border border-white/10 bg-white/[0.02] p-8">
-//             <div className="grid md:grid-cols-2 gap-8">
-//                 {/* Hackathon Info */}
-//                 <div>
-//                     <h3 className="text-2xl font-display font-bold text-white mb-3">
-//                         {hackathon.name}
-//                     </h3>
-//
-//                     <div className="space-y-2 text-sm text-gray-400 font-mono mb-4">
-//                         <div className="flex items-center gap-2">
-//                             <Calendar className="w-4 h-4 text-foss-green" />
-//                             {formattedDate}
-//                         </div>
-//                         <div className="flex items-center gap-2">
-//                             <Code2 className="w-4 h-4 text-foss-green" />
-//                             {hackathon.theme}
-//                         </div>
-//                     </div>
-//
-//                     <p className="text-gray-400 font-sans text-sm mb-4">
-//                         {hackathon.description}
-//                     </p>
-//
-//                     {hackathon.participants && (
-//                         <div className="flex items-center gap-6 text-sm font-mono text-gray-500">
-//                             <span>{hackathon.participants} participants</span>
-//                             <span>{hackathon.projects} projects</span>
-//                         </div>
-//                     )}
-//                 </div>
-//
-//                 {/* Winner */}
-//                 {hackathon.winner && (
-//                     <div className="border-l border-white/10 pl-8">
-//                         <div className="flex items-center gap-2 mb-4">
-//                             <Trophy className="w-5 h-5 text-yellow-400" />
-//                             <span className="text-yellow-400 font-mono text-sm font-bold">
-//                                 WINNER
-//                             </span>
-//                         </div>
-//
-//                         <h4 className="text-lg font-mono font-bold text-white mb-2">
-//                             {hackathon.winner.teamName}
-//                         </h4>
-//                         <p className="text-foss-green font-mono text-sm mb-3">
-//                             {hackathon.winner.projectName}
-//                         </p>
-//
-//                         <div className="text-sm text-gray-400 font-sans mb-4">
-//                             <span className="text-gray-500 font-mono text-xs uppercase tracking-wider block mb-1">
-//                                 Team Members
-//                             </span>
-//                             {hackathon.winner.members.join(", ")}
-//                         </div>
-//
-//                         {hackathon.winner.repoUrl && (
-//                             <a
-//                                 href={hackathon.winner.repoUrl}
-//                                 target="_blank"
-//                                 rel="noopener noreferrer"
-//                                 className="inline-flex items-center gap-2 text-foss-green hover:text-foss-green/80 font-mono text-sm transition-colors"
-//                             >
-//                                 <Github className="w-4 h-4" />
-//                                 View Project
-//                             </a>
-//                         )}
-//                     </div>
-//                 )}
-//             </div>
-//         </div>
-//     );
-// };
+        {/* HOST CTA (Organize) */}
+        <RevealOnScroll delay={100}>
+          <div className="hk-cta">
+            <span
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: 14,
+                height: 14,
+                borderTop: "1px solid rgba(0,255,127,.55)",
+                borderLeft: "1px solid rgba(0,255,127,.55)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                top: "-25%",
+                right: "-10%",
+                width: 280,
+                height: 280,
+                background:
+                  "radial-gradient(circle,rgba(0,255,127,.08) 0%,transparent 70%)",
+                pointerEvents: "none",
+              }}
+            />
+            <p className="pg-eyebrow">ORGANIZE</p>
+            <h3
+              style={{
+                fontFamily: '"Jersey 25",monospace',
+                fontSize: "clamp(1.6rem,3.5vw,2.2rem)",
+                letterSpacing: ".04em",
+                color: "#fff",
+                marginBottom: ".8rem",
+              }}
+            >
+              Want to host a hackathon?
+            </h3>
+            <p
+              className="text-gray-400 font-mono text-sm leading-relaxed mb-6"
+              style={{ maxWidth: "36rem" }}
+            >
+              We provide mentorship, resources, and support to help you organize
+              successful hackathons. Whether it's a 24-hour sprint or a
+              week-long challenge, we've got you covered.
+            </p>
+            <a
+              href="mailto:vcetopensource@gmail.com"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-foss-green text-black font-mono text-sm font-bold hover:bg-foss-green/90 transition-colors"
+            >
+              Get in Touch <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        </RevealOnScroll>
+      </div>
+    </div>
+  </>
+);
 
 export default Hackathons;

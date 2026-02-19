@@ -14,7 +14,8 @@ const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [starCount, setStarCount] = useState<number | null>(null);
 
-  const activeTab = location.pathname === "/" ? "home" : location.pathname.slice(1);
+  const activeTab =
+    location.pathname === "/" ? "home" : location.pathname.slice(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -160,10 +161,7 @@ const Navigation: React.FC = () => {
               )}
             </NavLink>
             <NavLink to="/community" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button
-                variant="primary"
-                className="w-full mt-2"
-              >
+              <Button variant="primary" className="w-full mt-2">
                 Join Discord
               </Button>
             </NavLink>
