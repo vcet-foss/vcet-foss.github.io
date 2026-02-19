@@ -13,6 +13,13 @@ import Documentation from "./pages/Documentation";
 import ProjectGuidelines from "./pages/ProjectGuidelines";
 import NotFound from "./pages/NotFound";
 
+/**
+ * Provides the application's routed page content and resets the window scroll to the top when the route changes.
+ *
+ * When the location updates, this component scrolls the window to coordinates (0, 0) and renders the matching route's page component.
+ *
+ * @returns The routed React element tree for the current URL.
+ */
 function PageContent() {
   const location = useLocation();
 
@@ -37,6 +44,13 @@ function PageContent() {
   );
 }
 
+/**
+ * Root application component that provides the top-level layout and routing container.
+ *
+ * Wraps the application in a HashRouter and renders Navigation, the main PageContent area, and Footer inside a styled full-height container.
+ *
+ * @returns The root React element for the application UI.
+ */
 function App() {
   return (
     <HashRouter>

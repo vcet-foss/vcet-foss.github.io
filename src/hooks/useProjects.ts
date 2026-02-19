@@ -78,7 +78,12 @@ const FALLBACK_PROJECTS: Project[] = [
   },
 ];
 
-/** Default sort: active projects first, then by name */
+/**
+ * Order projects by status (active, then dormant, then idea) and use the project name alphabetically as a tiebreaker.
+ *
+ * @param projects - The array of projects to sort
+ * @returns A new array containing the same projects sorted by status and then by `name`
+ */
 function defaultSort(projects: Project[]): Project[] {
   const statusOrder: Record<string, number> = {
     active: 0,
